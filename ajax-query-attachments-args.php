@@ -78,7 +78,7 @@ function get_attachments_last_changed( $update = false ) {
 	$last_changed = wp_cache_get( get_last_changed_key(), get_cache_group() );
 	if ( false === $last_changed || $update ) {
 		$last_changed = time();
-		wp_cache_set( get_last_changed_key(), $last_changed, get_cache_group(), HOUR_IN_SECONDS * 12 );
+		wp_cache_set( get_last_changed_key(), $last_changed, get_cache_group(), get_cache_time() );
 	}
 
 	return (string) $last_changed;
@@ -113,6 +113,15 @@ function get_last_changed_key() {
 }
 
 /**
+ * Gets the cache expiration time.
+ *
+ * @return int
+ */
+function get_cache_time() {
+	return apply_filters( 'wp_ajax_query_attachments_cache_time', get_cache_time() );
+}
+
+/**
  * Uses the object cache to cache AJAX attachment query results.
  *
  * @param  array    $posts List of posts.
@@ -136,7 +145,7 @@ function maybe_use_cached_posts( $posts, $query ) {
 			// Run the query and cache the post IDs.
 			$posts = $query->get_posts();
 
-			wp_cache_set( $cache_key, $posts, get_cache_group(), HOUR_IN_SECONDS * 12 );
+			wp_cache_set( $cache_key, $posts, get_cache_group(), HOUR_IN_SECONDS * 4 );
 		}
 	}
 
