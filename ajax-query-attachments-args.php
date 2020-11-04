@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: AJAX Query Attachments Args
- * Description: Updates the attachment query args for better performance.
+ * Plugin Name: AJAX Query Attachments Performance
+ * Description: Updates the AJAX attachment queries with performance improvements.
  * Version:     1.0.0
  * Author:      Pete Nelson
  * Author URI:  https://petenelson.io
  * License:     GPLv2 or later
  *
- * @package AJAXQueryAttachmentsArgs
+ * @package PeteNelson\AJAXQueryAttachmentsPerformance
  */
 
-namespace AJAXQueryAttachmentsArgs;
+namespace PeteNelson\AJAXQueryAttachmentsPerformance;
 
 /**
  * Quickly provide a namespaced way to get functions.
